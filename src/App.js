@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import NavBar from './components/Navbar'
+import Search_page from './pages/Search_page'
+import MyFav_page from './pages/MyFav_page'
+import Footer from './components/Footer'
 
-function App() {
+export default function App () {
+
+    const navitem = [
+        {name:'Search Page', url:'./'},
+        {name:'My Favorite Pictures',url:'./myFav'}
+    ]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
+        <BrowserRouter>
+            <NavBar navitem={navitem}/>
+                <Routes>
+                    <Route path="/" element={<Search_page />}/>
+                    <Route path="/myFav" element={<MyFav_page />}/>
+                </Routes>
+            <Footer />
+        </BrowserRouter>
+    </>
+  )
+};
 
-export default App;
